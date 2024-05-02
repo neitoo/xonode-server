@@ -1,0 +1,4 @@
+.env
+database/db.js
+database/script.sql
+constants.js
