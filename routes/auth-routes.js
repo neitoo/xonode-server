@@ -11,5 +11,6 @@ router.post("/logout", AuthValidator.logout, AuthController.logout);
 router.post("/refresh", AuthValidator.refresh, AuthController.refresh);
 
 router.post("/a/user",UserController.getInfoUser);
+router.get("/a/users", UserController.getAllUsers);
 
 export default router;
