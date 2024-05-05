@@ -35,7 +35,7 @@ class AuthService {
     };
   }
 
-  static async signUp({ login, password, fullname }) {
+  static async signUp({ login, password, fullname, age, gender}) {
     const userData = await UserRepo.getUserData(login);
     
     if(userData){
@@ -46,7 +46,10 @@ class AuthService {
     const {id} = await UserRepo.createUser({
       login,
       hashedPass, 
-      fullname
+      fullname, 
+      age, 
+      gender, 
+      admin: false
     });
     
     const payload = {id,login};
@@ -100,7 +103,8 @@ class AuthService {
     return {
       accessToken, 
       refreshToken, 
-      accessTokenExp: ACCESS_TOKEN_EXP
+      accessTokenExp: ACCESS_TOKEN_EXP,
+      id
     }
   }
 }
