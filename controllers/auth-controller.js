@@ -18,10 +18,10 @@ class AuthController {
   }
 
   static async signUp(req, res) {
-    const {login, password, fullname} = req.body;
+    const {login, password, fullname, age, gender} = req.body;
 
     try {
-      const {accessToken, refreshToken, accessTokenExp} = await AuthService.signUp({login,password,fullname});
+      const {accessToken, refreshToken, accessTokenExp} = await AuthService.signUp({login,password,fullname, age, gender});
 
       res.cookie("refreshToken",refreshToken, COOKIE_SETTINGS.REFRESH_TOKEN);
 
@@ -47,11 +47,11 @@ class AuthController {
     const currentRefreshToken = req.cookies.refreshToken;
 
     try {
-      const { accessToken, refreshToken, accessTokenExp } = await AuthService.refresh({currentRefreshToken});
+      const { accessToken, refreshToken, accessTokenExp, id} = await AuthService.refresh({currentRefreshToken});
 
       res.cookie("refreshToken", refreshToken, COOKIE_SETTINGS.REFRESH_TOKEN);
 
-      return res.status(200).json({ accessToken, accessTokenExp });
+      return res.status(200).json({ accessToken, accessTokenExp,id });
     } catch (err) {
       return ErrorsUtils.catchError(res, err);
     }
