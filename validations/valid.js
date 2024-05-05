@@ -15,13 +15,19 @@ export const signInSchema = Yup.object({
 
 export const signUpSchema = Yup.object({
     body: Yup.object({
-      login: Yup.string()
-        .required("Поле обязательно!")
-        .max(25, "Максимальная длина - 25 символов"),
-      password: Yup.string()
-        .required("Поле обязательно!")
-        .min(5, "Пароль слишком короткий - минимум 3 символа")
-        .max(60, "Максимальная длина - 60 символов"),
+        login: Yup.string()
+            .required("Поле обязательно!")
+            .max(25, "Максимальная длина - 25 символов"),
+        password: Yup.string()
+            .required("Поле обязательно!")
+            .min(5, "Пароль слишком короткий - минимум 3 символа")
+            .max(60, "Максимальная длина - 60 символов"),
+        fullname: Yup.string()
+            .required("Поле обязательно!"),
+        age: Yup.string()
+            .required("Поле обязательно!"),
+        gender: Yup.string()
+            .required("Поле обязательно!"),
     }),
   });
 
